@@ -266,8 +266,13 @@ END
 //
 
 
-CALL Ingresos_por_salas('2025-02-01', '2025-02-28');
+-- Test
+INSERT INTO Reserva_de_las_salas (cliente_id, sala_id, reserva_horas, reserva_fecha) 
+VALUES (1, 1, 2, '2025-02-10'),
+       (1, 2, 3, '2025-02-15'),
+       (2, 1, 1, '2025-02-20');
 
+CALL Ingresos_por_salas('2025-02-01', '2025-02-28');
 
 
 
@@ -287,6 +292,11 @@ END
 
 //
 
+
+-- Test
+INSERT INTO Planes_activos (cliente_id, plan_id, status, fecha_alta, fecha_baja) 
+VALUES (1, 1, TRUE, '2025-02-05', '2025-03-05'),
+       (2, 2, TRUE, '2025-02-10', '2025-03-10');
 
 CALL Ingresos_por_plan('2025-02-01', '2025-02-28');
 
@@ -309,10 +319,17 @@ END
 
 //
 
+-- Test
+INSERT INTO Asistencias (cliente_id, fecha_asistencia) 
+VALUES (1, '2025-02-01'),
+       (1, '2025-02-10'),
+       (2, '2025-02-15');
+
 CALL Asistencias_por_cliente('2025-02-01', '2025-02-28');
 
 
 
+    
 -- Creación de Triggers
 
 -- Trigger 1: Evitar que un usuario tenga más de un plan al mismo tiempo
